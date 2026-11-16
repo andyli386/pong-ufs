@@ -115,6 +115,10 @@ static void registrationReport (void *, wait_result_t)
 static bool probeFailure (const char *reason, uint64_t detail = 0)
 {
   native_ufs_status |= 0x80000000U;
+  // THOR: PongProbeRecord only records to the probe table; on bring-up every
+  // validation failure here was invisible on screen and looked like a hang.
+  IOLog ("PONG_UFS: probe failure: %s detail=0x%llx\n", reason,
+         (unsigned long long) detail);
   PongProbeRecord (0, "ufs-registers", PongProbeFail, reason, detail);
   return false;
 }

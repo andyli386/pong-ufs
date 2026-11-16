@@ -49,9 +49,11 @@ static UfsHost gHost;
 static uint32_t gWifiUfsReady;
 static bool gTransportAttempted;
 enum : uint64_t {
-  // Pong LUN0 GPT entry "userdata", captured from this phone in recovery.
-  kPongUserdataFirst4k = 0x413248ULL,
-  kPongUserdataLast4k = 0x75a40eaULL,
+  // THOR: Xiaomi 12S Ultra (thor) LUN0 GPT entry "userdata", observed from
+  // the device transport diagnostic (GPT/read lba=... userdata=2dfa00..7683bfa).
+  // Pong values were 0x413248..0x75a40ea (Nothing Phone 2, recovery capture).
+  kPongUserdataFirst4k = 0x2dfa00ULL,
+  kPongUserdataLast4k = 0x7683bfaULL,
   kRootLogicalBlock = 512,
 };
 struct RootDiskWindow {
